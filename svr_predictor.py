@@ -57,6 +57,8 @@ def train_svr_model(preprocessed_data: dict,
     best_model = None
     best_ac = -np.inf
 
+    # Note: SVR is deterministic - repeated training with same data yields same result.
+    # The iteration loop is kept for consistency with the early-stopping framework.
     for epoch in range(1, max_epochs + 1):
         svr_model = SVR(kernel=kernel, C=C, epsilon=epsilon)
         svr_model.fit(X_train, y_train)

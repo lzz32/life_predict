@@ -50,6 +50,8 @@ class CNNModel(nn.Module):
         self.bn2 = nn.BatchNorm1d(num_filters * 2)
 
     def forward(self, x):
+        # x shape: (batch_size, sequence_length, input_size)
+        # Transpose to (batch_size, input_size, sequence_length) for Conv1d
         x = x.transpose(1, 2)
         x = self.conv1(x)
         x = self.bn1(x)
